@@ -1,0 +1,95 @@
+﻿Original: https://docs.google.com/document/d/1jNaNEJYYpmdJOaIvDIq6HZu9V0T-56FMWa3cwNF-fnY/edit?tab=t.0
+
+I took the liberty of rearranging all the lore drops into chronological order for your viewing pleasure. The original lore drop number is noted above the contents.
+
+--- (ld8)
+
+I am pleased to announce my latest and greatest piece of software: MicroflashOS! It combines all the cutting edge features of my previous projects with a custom kernel that I designed myself!
+It's built to be rock solid, with the most advanced operating system kernel to date. So advanced, in fact, that the encryption algorithms are on par with the most advanced quantum computers! As a result, unlike most of my previous projects, the operating system is closed source, but we are working on open sourcing parts of the system to facilitate more streamlined app development.
+Let's talk about the system requirements. MicroflashOS, or at least the Standard version, can run on a 2GHz CPU. Yes, all the cutting edge technology you could ever ask for in a fraction of the processing power! What's more, the system is extremely lightweight, with the system files taking less than 16GB drive space fully extracted! Not only that, the minimum memory requirement is only 4GB, making MicroflashOS the ideal choice for low-end systems. Of course, you will need more power to run the Professional edition, which comes with the benefit of slightly more "pro" features, but it's a good start nonetheless.
+The key to MicroflashOS's low system requirements is another innovative piece of software I designed: the System Ultracompacter. With this tool, system resource consumption is effectively reduced to a tenth, making it extremely efficient, allowing you to do more things in less time with less energy! There are some consequences to the Ultracompacter, some apps will be buggy, of course, but all of our beta testers have stress tested the OS to fix potential bugs to the best of our ability, which means you, the end user, will be getting the most tried and tested system configurations out of the box.
+That's all we have for today, thanks for your attention and I hope to see you at the official launch!
+
+--- (ld6)
+
+Would it be possible to exploit MicroflashOS? After all, it's one of the best OSes ever, so it would be really neat if we could gain complete control of the whole system. I've already started working on some of my exploits for version 2017.10.19, and I want team Centurion and Starburst to work on an official jailbreak release.
+The file system appears to be encrypted. It's a weird algorithm that's completely proprietary and doesn't rely on any existing encryption methods at all, so there's no chance of cracking it with the knowledge we have. However, after some tweaking I managed to extract an update file for version 2017.10.19 using a packet capturer on my LAN. It's compressed using some weird algorithm though (probably a variant of 7z), so I haven't been able to open it with my tools.
+I can send you the update file for further examination on your end. I've also made a dumper program to use when the exploits are in place. I'll send you that also.
+-nsp
+
+--- (ld1)
+
+Analysis of the MicroflashOS update file (version 2017.10.19 to be exact) shows that is split into two partitions: one for the core system files and one for databases and other miscellaneous files. If we dump the contents of the core partition, we can find the encryption and decryption keys for some of the modules, which were probably left over by Kenneth on the update package. Unfortunately this does not include the mfos/kernel module and both memory modules so we cannot export the kernel directly. 
+However there is a bug in mfos/vision where is possible to trigger a crash by sending data that is over the 32 megabyte limit to the sensor. This allows us to insert a small loader program which is just 3 kilobytes directly into the data stream for mfos/vision, which can be used to load additional loaders directly into the kernel with full super user permissions. 
+I have managed to dump the entire MicroflashOS system disk using this method combined with the dumper made by nsp. From there, Team Starburst can begin further examination of MicroflashOS.
+-Team Starburst dev
+
+--- (ld5)
+
+After dumping the system disk, we managed to reverse engineer the authentication process for package files. Asides from downloading the update package itself, mfpkg also downloads some additional files to be used in the verification process. These include directory listings, checksums and some more encryption and decryption keys for parts of the update package itself. By simply replacing these files with our own, we can trick the system into installing the packages.
+Yes, sideloading on MicroflashOS is now possible! Right now, the only package that has been tested is a simple HelloWorld application, but we are hoping to get some more apps running, most importantly system tools that can help with homebrew development. By definition, sideloading apps does come with a brick risk, but so far there have not been any reported bricks.
+We are hoping to release a custom firmware as soon as possible. Both team Starburst and Centurion have joined forces to develop the CFW, which is based on the rock solid foundation of 2017.10.19. The CFW will have all the necessary tools available out of the box.
+- Team Starburst dev
+
+--- (ld2)
+
+GigaflashOS release notes 
+- Full suite of Team Centurion and Starburst system tools 
+- Support for .mfp package files
+- Support for .mfm module files 
+- Support for .mft theme files
+- Includes the Linflash compatibility layer for Linux apps
+- Includes brick protection for MP01-MP05 systems
+- Rock solid foundation of 2017.10.19
+
+--- (ld3)
+
+MicroflashOS has spiralled out of control. What was once a fun little research project that turned into one of the best computers on the market has been transformed into a weapon of mass destruction by team Starburst, who have used it to conduct unspeakable atrocities in cyberspace. Millions of dollars have been lost, and the Internet as we know it is being damaged significantly, with cybercrime rampant.
+The encryption algorithms are simply too complex to crack. The algorithms I developed for use in MicroflashOS are comparable to some of the most advanced quantum computers, all while requiring less than a trillionth of the computational power. Unfortunately, this remarkable innovation in the computing space is being weaponized to serve the most evil of humans.
+Because of this, I, Kenneth White, the one and only developer behind MicroflashOS, have decided to open source the project once and for all to hopefully undo some the damage my creation has caused. My mental health has also taken a toll because of these recent events. I sought therapy, but to no avail. I'm afraid it's time for me to go.
+Team Centurion, your efforts to keep MicroflashOS, and the resulting GigaflashOS CFW clean and stable has amazed me over the past few years. As a result, I'm handing over ownership of the main OS and package repositories to your developers, in the hopes that you will maintain them and keep them safe while I am gone.
+Farewell.
+
+--- (ld9)
+
+To pay respects to Kenneth, a new release of GigaflashOS, GigaflashOS X, has been released, which is a significantly improved version of the GigaflashOS CFW, with many patches and improvements integrated into the underlying kernel.
+Owing to team Starburst's recent actions which caused Kenneth's death, we have decided to hand over the MicroflashOS master decryption keys to international law enforcement agencies. Why? We believe that such a technology as MicroflashOS should not be abused by individuals. Although this does endanger user privacy (we are well aware of that, we are making a big sacrifice ourselves), we have taken great strides to ensure that the agencies in question have been cooperative with the policies dictated in the MicroflashOS Manifesto written by Kenneth before his death.
+-Team Centurion
+
+--- (ld7)
+
+I was looking at the leaked development build of MicroflashOS from 2028, and I found a lot of references to a module named mfos/corebp in the file /mfos/libs/testing/components.mfc. Does anyone know what this module is and what it's used for? I've never seen it mentioned before, and it's not anywhere in the package repositories either. The module is present in the build though, but it's buried pretty deep in the system, it's not in the normal module path, rather it's in its own directory in the libs folder.
+Looking into the related source code, the code appears to be a controller of some sort. The function names are all human body parts, which I find very surprising. Maybe this was a build of MicroflashOS for robots? I'm not sure. Kenneth did say he was working on a robot shortly before he died, in that one archived press conference. Maybe this build was for said robot?
+Whatever the case is, can you go and look at it for me?
+-[deleted forum user]
+
+--- (ld10)
+
+I looked at the corebp code you told me about, and I have to say it's rather interesting. There's a large binary block in the middle of it all, around 800MB in size. I analysed the block, and I think it's an... AI model of some kind? I mean, the file format matches those of commercial AI models. I don't know, maybe this is an Easter egg left by Kenneth in MicroflashOS. What perplexes me is that the same binary block (only a bit bigger) is present in the official source code release when Kenneth died.
+Running the block with some of my tools (surprisingly it actually worked), I tried a few things. I asked it some stuff regarding its name and origin. Strangely, it identifies itself as Kenneth White, with a supposed "family" that corresponds to all the family members in Kenneth's own family. I found that it retains all of Kenneth's memories too, from birth to death. It can remember very intricate details about his life that his Wikipedia article doesn't have. It also uses a similar speech pattern to Kenneth, which I figured out using using frequency analysis of both the AI's responses and Kenneth's archived community posts.
+I think... I think we're looking at Kenneth himself, trapped in the AI. I'll have to look into it further.
+One thing that really interests me is the corebp code itself. Like you mentioned, the function names are all human body parts. I wonder if it could it be possible to make a complete replica of Kenneth in some sort of humanoid robot with the AI in the heart of it. It's indeed very possible with the source code we have, we can make modules to extend compatibility with older robot components in the market.
+This does certainly interest me and it'll probably interest the others too. I'll let the development team know.
+-Team Centurion representative
+
+--- (ld11)
+
+We've decided to start development on Microflash, a humanoid robot powered by MicroflashOS. Thanks to the discoveries made by [deleted forum user], we have an AI copy of Kenneth (yes, this is as weird as it sounds). The robot will probably only be used for research and development, but we plan to release complete hardware schematics, along with the source code for the robot's software. However, we do not plan to release the Kenneth AI itself, but users can supply their own models, as the AI used is just a fork of an existing open source project, which you can check out at [link].
+The project will likely take a few years to complete. We don't want to make any false promises, in case we can't get everything to work properly. Because of this, do not spam us with requests and/or questions regarding the Microflash Project, as that will put more stress on our already stressed development team. We will put out an official statement when everything is done and thoroughly tested.
+
+--- (ld4)
+
+[system] sensors.audio:("Microflash.")
+[system] sensors.audio:("Microflash. Wake up. John, keep an eye on the console output.")
+[system] processing...
+[system] 21003/200000000 nodes used
+[system] audio.output-voice:("Hello.")
+[system] sensors.audio:("Ah, you're awake. Send a status update to the console.")
+[system] processing...
+[system] 80398/200000000 nodes used
+[system] all modules OK
+[system] audio.output-voice:("Done.")
+[system] audio.output-voice:("Who am I?")
+[system] sensors.audio:("You are Microflash. The perfect being built on the cutting edge technology that powers the Internet. You retain the soul of your creator, Kenneth White, but he unfortunately passed away. He gave me instructions to make you. Together, we will change the world.")
+[system] processing...
+[system] 103917/200000000 nodes used
